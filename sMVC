@@ -1,0 +1,16 @@
+#!/usr/bin/env php
+<?php
+// sMVC.php
+
+require __DIR__.'/vendor/autoload.php';
+
+use Symfony\Component\Console\Application;
+use cmd\MigrateCommand;
+use cmd\MigrateMakeCommand;
+
+$application = new Application();
+
+// ... register commands
+$application->add(new MigrateCommand());
+$application->add(new MigrateMakeCommand());
+$application->run();
