@@ -16,10 +16,10 @@ composer install
 Installation guide for [Linux/Unix/OSX](https://getcomposer.org/doc/00-intro.md#installation-linux-unix-macos) and [Windows](https://getcomposer.org/doc/00-intro.md#installation-windows).
 
 ## Requirements
-Composer
-PHP 7.4+
-webserver with legacy support for Apache with mod_rewrite
-PDO if using the Database
+* Composer
+* PHP 7.4+
+* webserver with legacy support for Apache with mod_rewrite
+* PDO if using the Database
 
 ## Creating sMVC project
 * git clone https://github.com/ssegers/sMVC.git<br>
