@@ -13,7 +13,7 @@ This means the framework is the ideal basis to master programming in PHP.
 sMVC requires Composer to work. 
 
 composer install
-Installation guide for [Linux/Unix/OSX] https://getcomposer.org/doc/00-intro.md#installation-linux-unix-macos and Windows.
+Installation guide for [Linux/Unix/OSX](https://getcomposer.org/doc/00-intro.md#installation-linux-unix-macos) and Windows.
 
 ## Requirements
 Composer
@@ -22,7 +22,7 @@ webserver with legacy support for Apache with mod_rewrite
 PDO if using the Database
 
 ## Creating sMVC project
-git clone https://github.com/ssegers/sMVC.git<br>
-run composer install<br>
-Composer will fetch the required PHP classes and install them inside the vendor directory (including the autoload.php).
-copy .env.example to .env
+> git clone https://github.com/ssegers/sMVC.git<br>
+> run composer install<br>
+  Composer will fetch the required PHP classes and install them inside the vendor directory (including the autoload.php).
+> copy .env.example to .env
