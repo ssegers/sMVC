@@ -8,20 +8,20 @@ Out-of-the-box it only offers an MVC structure with support for database operati
 The framework can be extended according to your own needs by own classes and functions or by third-party libraries (https://packagist.org/) that you can install via composer. 
 This means the framework is the ideal basis to master programming in PHP.
 
-##Composer
+## Composer
 
 sMVC requires Composer to work. 
 
-$ composer install
+composer install
 Installation guide for [Linux/Unix/OSX] https://getcomposer.org/doc/00-intro.md#installation-linux-unix-macos and Windows.
 
-##Requirements
+## Requirements
 Composer
 PHP 7.4+
 webserver with legacy support for Apache with mod_rewrite
 PDO if using the Database
 
-##Creating sMVC project
+## Creating sMVC project
 git clone https://github.com/ssegers/sMVC.git<br>
 run composer install<br>
 Composer will fetch the required PHP classes and install them inside the vendor directory (including the autoload.php).
