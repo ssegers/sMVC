@@ -85,7 +85,7 @@
         </div>
         <div class="d-flex flex-row justify-content-center">
             <p class="lead">
-              <a href="https://github.com/ssegers/sMVC.git" class="btn btn-lg btn-secondary">Learn more</a>
+              <a href="https://github.com/ssegers/sMVC/wiki" class="btn btn-lg btn-secondary">Learn more</a>
             </p>
         </div>
     </div>
