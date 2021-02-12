@@ -13,7 +13,7 @@ use app\controllers\defaultController;
 | routes are loaded by the public/index.php file
 |--------------------------------------------------------------------------
 */
-Router::get('/', 'welcome');
+//Router::get('/', 'welcome');
 //Router::get('/test','home',['name'=>'Joe Biden']);
 //Router::get('/contact', function(){
 //    $content = Application::$app->view->fetch('partialviews/contact');
@@ -24,4 +24,4 @@ Router::get('/', 'welcome');
 //        'bigTitle' => 'PHP en MySql',
 //        ]);
 //});
-//Router::get('/', [defaultController::class, 'home']);
+Router::get('/', [defaultController::class, 'home']);

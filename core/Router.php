@@ -42,7 +42,7 @@ class Router {
     
         if ($callback === false){
             $this->response->statusCode(404); 
-            return $this->renderView('error/404');
+            return $this->showView('error/404');
         }
         if (is_string($callback)){
             $view = $callback;
