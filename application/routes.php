@@ -2,7 +2,7 @@
 
 use core\Router;
 use core\Application;
-use app\controllers\defaultController;
+use app\controllers;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,4 +24,4 @@ Router::get('/', 'welcome');
 //        'bigTitle' => 'PHP en MySql',
 //        ]);
 //});
-//Router::get('/', [defaultController::class, 'home']);
+//Router::get('/', [controllers\defaultController::class, 'home']);
