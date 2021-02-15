@@ -26,3 +26,5 @@ Installation guide for [Linux/Unix/OSX](https://getcomposer.org/doc/00-intro.md#
 * run composer install<br>
   Composer will fetch the required PHP classes and install them inside the vendor directory (including the autoload.php).
 * copy .env.example to .env
+
+more info you can find [here](https://github.com/ssegers/sMVC/wiki)
