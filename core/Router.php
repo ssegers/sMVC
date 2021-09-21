@@ -29,9 +29,10 @@ class Router {
         self::$routes['get'][$path]['params'] = $params;
     }
     
-    public static function post(string $url, $callback)
+    public static function post($path, $callback, $params = []) 
     {
-        self::$routes['post'][$url] = $callback;
+        self::$routes['post'][$path]['callback'] = $callback;
+        self::$routes['post'][$path]['params'] = $params;
     }
        
     public function resolve() {
