@@ -5,7 +5,7 @@ This framework was created to support a PHP course and is therefore not a produc
 
 So sMVC is not a complete framework that already contains all kinds of libraries and software components. 
 Out-of-the-box it only offers an MVC structure with support for database operations via the PDO class 
-The framework can be extended according to your own needs by own classes and functions or by third-party libraries (https://packagist.org/) that you can install via composer. 
+The framework can be extended according to your own needs by own classes and functions or by third-party libraries (https://packagist.org/) that you can install through composer. 
 This means the framework is the ideal basis to master programming in PHP.
 
 ## Composer
