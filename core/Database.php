@@ -42,20 +42,26 @@ class Database {
         $newMigrations = [];
         $allMigrations = array_slice(scandir($this->migrationPath),2);
         $toMigrate = array_diff($allMigrations, $migrated);
-        foreach ($toMigrate as $migration) {
-            require_once $this->migrationPath.$migration;
-            $filename = pathinfo($migration, PATHINFO_FILENAME);
-            $classname = $this->getClassname($filename);
-            $instance = new $classname();
-            $this->showMessage("migrating $migration");
-            $sql = $instance->up();
-            $this->pdo->exec($sql);
-            $this->showMessage("migrated $migration");
-            $newMigrations[] = $migration;
-        }
+        if (!empty($toMigrate)) {
+            foreach ($toMigrate as $migration) {
+                require_once $this->migrationPath.$migration;
+                $filename = pathinfo($migration, PATHINFO_FILENAME);
+                $classname = $this->getClassname($filename);
+                $instance = new $classname();
+                $this->showMessage("migrating $migration");
+                $sql = $instance->up();
+                try{
+                    $this->pdo->exec($sql);
+                    $this->showMessage("migrated $migration");
 
-        if (!empty($newMigrations)) {
-            $this->saveMigrations($newMigrations);
+                    $this->saveMigrations($migration);
+
+                }catch(PDOException $error) { 
+                    $this->showMessage("There is an error in your migration code: ".$error->getMessage()); 
+                }    
+
+            }
+
         } else {
             $this->showMessage("There are no migrations to execute");
         }
@@ -78,12 +84,12 @@ class Database {
         return $statement->fetchAll(\PDO::FETCH_COLUMN);
     }
 
-    protected function saveMigrations(array $newMigrations)
+    protected function saveMigrations(string $newMigration)
     {
         //create string to insert
         //"('migration_file_name1'),('migration_file_name2'), ..."
-        $str = implode(',', array_map(fn($m) => "('$m')", $newMigrations));
-        
+        //$str = implode(',', array_map(fn($m) => "('$m')", $newMigrations));
+        $str = "('".$newMigration."')";
         $statement = $this->pdo->prepare("INSERT INTO migrations (migration) VALUES 
             $str
         ");
