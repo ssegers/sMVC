@@ -17,7 +17,7 @@ Installation guide for [Linux/Unix/OSX](https://getcomposer.org/doc/00-intro.md#
 
 ## Requirements
 * Composer
-* PHP 7.4+
+* PHP 8.1+
 * webserver with legacy support for Apache with mod_rewrite
 * PDO if using the Database
 
