@@ -21,10 +21,11 @@
         ]
     },
     "require": {
-        "twbs/bootstrap": "4.3.1",
-        "components/jquery": "3.5.*",
-        "vlucas/phpdotenv": "^5.3",
-        "symfony/console": "^5.2"
+        "php": ">=8.1",
+        "twbs/bootstrap": "5.3.1",
+        "components/jquery": "3.6.*",
+        "vlucas/phpdotenv": "^5.5",
+        "symfony/console": "^6.3"
     },
     "scripts": {
         "post-update-cmd": [
