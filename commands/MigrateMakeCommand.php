@@ -1,4 +1,5 @@
 <?php
+
 namespace cmd;
 
 /**
@@ -6,19 +7,19 @@ namespace cmd;
  *
  * @author seger
  */
+
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Input\InputArgument;
-
 use core\Application;
 use Dotenv\Dotenv;
 
-class MigrateMakeCommand extends Command {
+class MigrateMakeCommand extends Command
+{
     protected $commandName = 'make:migration';
     protected $commandDescription = "create new migration";
     protected $commandHelp = "this command creates a new migration withd the given name";
-   
     protected function configure()
     {
         $this
@@ -28,7 +29,7 @@ class MigrateMakeCommand extends Command {
             ->addArgument('migration_name', InputArgument::REQUIRED, 'name of the migration.')
         ;
     }
-    
+
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         $dotenv = Dotenv::createImmutable(dirname(__DIR__));
@@ -39,14 +40,13 @@ class MigrateMakeCommand extends Command {
             '<info>Create new database Migration</>',
             '<info>=============================</>',
         ]);
-
         // the value returned by someMethod() can be an iterator (https://secure.php.net/iterator)
         // that generates and returns the messages with the 'yield' PHP keyword
         //$output->writeln($this->someMethod());
 
         $config = [
             'application' => [
-                'directory' => dirname(__DIR__).'/application',
+                'directory' => dirname(__DIR__) . '/application',
             ],
             'db' => [
                 'active' => $_ENV['DB_ACTIVE'] ?? false,
@@ -59,13 +59,12 @@ class MigrateMakeCommand extends Command {
         $app = new Application($config);
         $migration = $input->getArgument('migration_name');
         $migrationFileName = $app->db->createNewMigration($migration);
-        if ($migrationFileName === false){
-            $output->writeln("<error>".$migration." already exists"."</error>");
-        }else{
-            $output->writeln("<info>".$migrationFileName."</info>");
+        if ($migrationFileName === false) {
+            $output->writeln("<error>" . $migration . " already exists" . "</error>");
+        } else {
+            $output->writeln("<info>" . $migrationFileName . "</info>");
         }
         //$output->writeln("<info>".$app->db->getDatePrefix()."_".$input->getArgument('migration_name')."</info>");
         return Command::SUCCESS;
     }
-
 }

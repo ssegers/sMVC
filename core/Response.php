@@ -1,4 +1,5 @@
 <?php
+
 /**
  * sMVC response class
  *
@@ -10,11 +11,10 @@
 
 namespace core;
 
-class Response {
-    
+class Response
+{
     public function statusCode(int $code)
     {
         http_response_code($code);
     }
-    
 }

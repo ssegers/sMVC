@@ -1,4 +1,5 @@
 <?php
+
 namespace cmd;
 
 /**
@@ -10,15 +11,14 @@ namespace cmd;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
-
 use core\Application;
 use Dotenv\Dotenv;
 
-class MigrateCommand extends Command {
+class MigrateCommand extends Command
+{
     protected $commandName = 'migrate';
     protected $commandDescription = "execute database migrations";
     protected $commandHelp = "this command executes the database migrations";
-   
     protected function configure()
     {
         $this
@@ -28,7 +28,7 @@ class MigrateCommand extends Command {
 
         ;
     }
-    
+
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         $dotenv = Dotenv::createImmutable(dirname(__DIR__));
@@ -39,14 +39,13 @@ class MigrateCommand extends Command {
             '<info>Database Migrations</>',
             '<info>===================</>',
         ]);
-
         // the value returned by someMethod() can be an iterator (https://secure.php.net/iterator)
         // that generates and returns the messages with the 'yield' PHP keyword
         //$output->writeln($this->someMethod());
 
         $config = [
             'application' => [
-                'directory' => dirname(__DIR__).'/application',
+                'directory' => dirname(__DIR__) . '/application',
             ],
             'db' => [
                 'active' => $_ENV['DB_ACTIVE'] ?? false,
@@ -57,9 +56,9 @@ class MigrateCommand extends Command {
             ],
         ];
         $app = new Application($config);
-        if (isset($app->db)){
+        if (isset($app->db)) {
             $app->db->migrate();
-        }else{
+        } else {
             $output->writeln("can't execute migrations, there is no database connection");
         }
         return Command::SUCCESS;

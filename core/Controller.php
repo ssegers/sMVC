@@ -9,16 +9,15 @@
  * @since      Class available since Release 1.0.0
  */
 
-
 namespace core;
 
-class Controller {
-    
+class Controller
+{
     public View $view;
-    
-    public function __construct() {
+
+    public function __construct()
+    {
         /* instantiate view library */
         $this->view = new View();
     }
-    
 }

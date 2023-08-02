@@ -11,20 +11,22 @@
 
 namespace core;
 
-class Model {
+class Model
+{
     public Database $db;
-    
-    public function __construct() {
-        if (isset(Application::$app->db)){
+
+    public function __construct()
+    {
+        if (isset(Application::$app->db)) {
             $this->db = Application::$app->db;
         }
     }
-    
-    public function loadData($data) {
-        
+
+    public function loadData($data)
+    {
     }
-    
-    public function validate() {
-        
+
+    public function validate()
+    {
     }
 }
