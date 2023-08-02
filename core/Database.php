@@ -58,13 +58,17 @@ class Database
                     $instance = new $classname();
                     $this->showMessage("migrating $migration");
                     $sql = $instance->up();
-                    try {
-                        $this->pdo->exec($sql);
-                        $this->showMessage("migrated $migration");
+                    if (!empty($sql)){
+                        try {
+                            $this->pdo->exec($sql);
+                            $this->showMessage("migrated $migration");
 
-                        $this->saveMigration($migration);
-                    } catch (PDOException $error) {
-                        $this->showMessage("There is an error in your migration code: " . $error->getMessage());
+                            $this->saveMigration($migration);
+                        } catch (PDOException $error) {
+                            $this->showMessage("There is an error in your migration code: " . $error->getMessage());
+                        }
+                    }else{
+                        $this->showMessage("up command is empty, check your migration code");
                     }
                 }
             } else {
