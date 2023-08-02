@@ -13,7 +13,7 @@ namespace core;
 
 class Response
 {
-    public function statusCode(int $code)
+    public function statusCode(int $code) : void
     {
         http_response_code($code);
     }
