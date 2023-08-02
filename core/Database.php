@@ -20,9 +20,8 @@ class Database
 
     /**
      * @param array<mixed> $dbConfig
-     * @return void
      */
-    public function __construct(array $dbConfig = []) : void
+    public function __construct(array $dbConfig = [])
     {
         $this->migrationPath = (Application::$ROOT_DIR . '\database\migrations\\');
         $dbDsn = 'mysql:host=' . $dbConfig['host'] . ';port=3306;dbname=' . $dbConfig['name'];
