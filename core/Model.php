@@ -22,11 +22,14 @@ class Model
         }
     }
 
-    public function loadData($data)
+    /**
+     * @param array<mixed> $data
+     */
+    public function loadData(array $data) :void
     {
     }
 
-    public function validate()
+    public function validate() :void
     {
     }
 }
