@@ -1,4 +1,5 @@
 <?php
+namespace core;
 
 /**
  * sMVC application class
@@ -8,9 +9,6 @@
  * @version    1.0.0
  * @since      Class available since Release 1.0.0
  */
-
-namespace core;
-
 class Application
 {
     public static string $APP_DIR;

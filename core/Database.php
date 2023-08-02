@@ -1,5 +1,4 @@
 <?php
-
 namespace core;
 
 use PDO;
