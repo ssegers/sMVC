@@ -23,7 +23,10 @@ class Application
     public View $view;
     public Database $db;
 
-    public function __construct($config)
+    /**
+     * @param array<mixed> $config
+     */
+    public function __construct(array $config)
     {
         self::$ROOT_DIR = dirname(__DIR__);
         self::$APP_DIR = $config['application']['directory'];
@@ -37,7 +40,7 @@ class Application
         }
     }
 
-    public function run()
+    public function run() :void
     {
         $this->router->resolve();
     }
