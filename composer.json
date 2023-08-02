@@ -35,5 +35,8 @@
             "cp vendor/twbs/bootstrap/dist/js/bootstrap.min.js public/js/bootstrap.min.js",
             "cp vendor/components/jquery/jquery.min.js public/js/jquery.min.js"
         ]
+    },
+    "require-dev": {
+        "phpstan/phpstan": "^1.10"
     }
 }
