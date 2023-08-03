@@ -16,9 +16,9 @@ use Dotenv\Dotenv;
 
 class MigrateCommand extends Command
 {
-    protected $commandName = 'migrate';
-    protected $commandDescription = "execute database migrations";
-    protected $commandHelp = "this command executes the database migrations";
+    protected string $commandName = 'migrate';
+    protected string $commandDescription = "execute database migrations";
+    protected string $commandHelp = "this command executes the database migrations";
     protected function configure()
     {
         $this

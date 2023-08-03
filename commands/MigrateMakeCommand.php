@@ -17,9 +17,9 @@ use Dotenv\Dotenv;
 
 class MigrateMakeCommand extends Command
 {
-    protected $commandName = 'make:migration';
-    protected $commandDescription = "create new migration";
-    protected $commandHelp = "this command creates a new migration withd the given name";
+    protected string $commandName = 'make:migration';
+    protected string $commandDescription = "create new migration";
+    protected string $commandHelp = "this command creates a new migration withd the given name";
     protected function configure()
     {
         $this
