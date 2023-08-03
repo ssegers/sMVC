@@ -11,6 +11,9 @@ namespace core;
  */
 class Router
 {
+    /**
+     * @var array<mixed> $routes
+     */
     public static array $routes = [];
 
     public Request $request;
@@ -22,19 +25,25 @@ class Router
         $this->response = $response;
     }
 
-    public static function get($path, $callback, $params = [])
+    /**
+     * @param array<mixed> $params
+     */
+    public static function get(string $path, mixed $callback, array $params = []) : void
     {
         self::$routes['get'][$path]['callback'] = $callback;
         self::$routes['get'][$path]['params'] = $params;
     }
 
-    public static function post($path, $callback, $params = [])
+    /**
+     * @param array<mixed> $params
+     */
+    public static function post(string $path, mixed $callback, array $params = []) : void
     {
         self::$routes['post'][$path]['callback'] = $callback;
         self::$routes['post'][$path]['params'] = $params;
     }
 
-    public function resolve()
+    public function resolve() : mixed
     {
         $path = $this->request->getPath();
         $method = $this->request->getMethod();
@@ -60,8 +69,12 @@ class Router
         return call_user_func($callback);
     }
 
-    public function showView($view, $params = [])
+    /**
+     * @param array<mixed> $params
+     */
+    public function showView(string $view, array $params = []) : NULL
     {
         Application::$app->view->display($view, $params);
+        return null;
     }
 }
