@@ -1,9 +1,9 @@
 <?php
 
-function migrate()
+function migrate() : void
 {
 }
 
-function createMigration(string $nameOfMigration = null)
+function createMigration(string $nameOfMigration = null) : void
 {
 }
