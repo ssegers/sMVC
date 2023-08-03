@@ -15,8 +15,15 @@ use Exception;
 
 class View
 {
-    public $viewVars = array();
-    protected function renderView($view, array $viewVars = null)
+    /**
+     * @var array<mixed> $viewVars
+     */
+    public array $viewVars = array();
+
+    /**
+     * @param array<mixed> $viewVars
+     */
+    protected function renderView(string $view, array $viewVars = null): null
     {
         extract($this->viewVars);
         if (isset($viewVars)) {
@@ -32,9 +39,10 @@ class View
         } catch (Exception $e) {
             echo $e->getMessage();
         }
+        return null;
     }
 
-    public function assign($viewVar, $value = null)
+    public function assign(mixed $viewVar, mixed $value = null): void
     {
         if (isset($value)) {
             $this->viewVars[$viewVar] = $value;
@@ -43,22 +51,27 @@ class View
                 if (is_int($key)) {
                     $this->viewVars[] = $value;
                 } else {
-                    $this->view_vars[$key] = $value;
+                    $this->viewVars[$key] = $value;
                 }
             }
         }
     }
 
-    public function fetch($view, array $viewVars = null)
+    /**
+     * @param array<mixed> $viewVars
+     */
+    public function fetch(string $view, array $viewVars = null): mixed
     {
         ob_start();
         $this->renderView($view, $viewVars);
         return ob_get_clean();
     }
 
-    public function display($view, array $params = null)
+    /**
+     * @param array<mixed> $params
+     */
+    public function display(string $view, array $params = null): mixed
     {
-
         return $this->renderView($view, $params);
     }
 }
