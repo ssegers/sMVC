@@ -42,7 +42,7 @@ class View
         return null;
     }
 
-    public function assign(mixed $viewVar, mixed|null $value = null): void
+    public function assign(mixed $viewVar, mixed $value = null): void
     {
         if (isset($value)) {
             $this->viewVars[$viewVar] = $value;
