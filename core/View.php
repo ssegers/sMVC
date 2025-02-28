@@ -23,7 +23,7 @@ class View
     /**
      * @param array<mixed> $viewVars
      */
-    protected function renderView(string $view, array $viewVars = null): null
+    protected function renderView(string $view, array|null $viewVars = null): null
     {
         extract($this->viewVars);
         if (isset($viewVars)) {
@@ -42,7 +42,7 @@ class View
         return null;
     }
 
-    public function assign(mixed $viewVar, mixed $value = null): void
+    public function assign(mixed $viewVar, mixed|null $value = null): void
     {
         if (isset($value)) {
             $this->viewVars[$viewVar] = $value;
@@ -60,7 +60,7 @@ class View
     /**
      * @param array<mixed> $viewVars
      */
-    public function fetch(string $view, array $viewVars = null): mixed
+    public function fetch(string $view, array|null $viewVars = null): mixed
     {
         ob_start();
         $this->renderView($view, $viewVars);
@@ -70,7 +70,7 @@ class View
     /**
      * @param array<mixed> $params
      */
-    public function display(string $view, array $params = null): mixed
+    public function display(string $view, array|null $params = null): mixed
     {
         return $this->renderView($view, $params);
     }

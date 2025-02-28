@@ -4,6 +4,6 @@ function migrate() : void
 {
 }
 
-function createMigration(string $nameOfMigration = null) : void
+function createMigration(string|null $nameOfMigration = null) : void
 {
 }
