@@ -17,11 +17,12 @@ use Dotenv\Dotenv;
 
 class MigrateMakeCommand extends Command
 {
-    protected static $defaultName = 'make:migration';
+    protected string $commandName = 'make:migration';
 
     protected function configure()
     {
         $this
+            ->setName($this->commandName)
             ->setDescription('Create new migration')
             ->setHelp('This command creates a new migration with the given name')
             ->addArgument('migration_name', InputArgument::REQUIRED, 'Name of the migration.');

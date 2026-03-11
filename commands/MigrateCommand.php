@@ -16,11 +16,11 @@ use Dotenv\Dotenv;
 
 class MigrateCommand extends Command
 {
-    protected static $defaultName = 'migrate';
-
+    protected string $commandName = 'migrate';
     protected function configure()
     {
         $this
+            ->setName($this->commandName)
             ->setDescription('Execute database migrations')
             ->setHelp('This command executes the database migrations');
     }
