@@ -17,34 +17,28 @@ use Dotenv\Dotenv;
 
 class MigrateMakeCommand extends Command
 {
-    protected string $commandName = 'make:migration';
-    protected string $commandDescription = "create new migration";
-    protected string $commandHelp = "this command creates a new migration withd the given name";
+    protected static $defaultName = 'make:migration';
+
     protected function configure()
     {
         $this
-            ->setName($this->commandName)
-            ->setDescription($this->commandDescription)
-            ->setHelp($this->commandHelp)
-            ->addArgument('migration_name', InputArgument::REQUIRED, 'name of the migration.')
-        ;
+            ->setDescription('Create new migration')
+            ->setHelp('This command creates a new migration with the given name')
+            ->addArgument('migration_name', InputArgument::REQUIRED, 'Name of the migration.');
     }
 
     protected function execute(InputInterface $input, OutputInterface $output): int
-    {   
+    {
         if (!isset($_ENV['DB_HOST'])) {
             $dotenv = Dotenv::createImmutable(dirname(__DIR__));
-            $dotenv->load();
+            $dotenv->safeLoad();
         }
-        // outputs multiple lines to the console (adding "\n" at the end of each line)
+
         $output->writeln([
             '',
-            '<info>Create new database Migration</>',
-            '<info>=============================</>',
+            '<info>Create new database migration</info>',
+            '<info>=============================</info>',
         ]);
-        // the value returned by someMethod() can be an iterator (https://secure.php.net/iterator)
-        // that generates and returns the messages with the 'yield' PHP keyword
-        //$output->writeln($this->someMethod());
 
         $config = [
             'application' => [
@@ -58,15 +52,24 @@ class MigrateMakeCommand extends Command
                 'password' => $_ENV['DB_PASSWORD'] ?? '',
             ],
         ];
+
         $app = new Application($config);
+
+        if ($app->db === null) {
+            $output->writeln("<error>No database connection.</error>");
+            return Command::FAILURE;
+        }
+
         $migration = $input->getArgument('migration_name');
         $migrationFileName = $app->db->createNewMigration($migration);
+
         if ($migrationFileName === false) {
-            $output->writeln("<error>" . $migration . " already exists" . "</error>");
-        } else {
-            $output->writeln("<info>" . $migrationFileName . "</info>");
+            $output->writeln("<error>$migration already exists</error>");
+            return Command::FAILURE;
         }
-        //$output->writeln("<info>".$app->db->getDatePrefix()."_".$input->getArgument('migration_name')."</info>");
+
+        $output->writeln("<info>Migration created: $migrationFileName</info>");
+
         return Command::SUCCESS;
     }
 }

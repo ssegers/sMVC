@@ -16,34 +16,25 @@ use Dotenv\Dotenv;
 
 class MigrateCommand extends Command
 {
-    protected string $commandName = 'migrate';
-    protected string $commandDescription = "execute database migrations";
-    protected string $commandHelp = "this command executes the database migrations";
+    protected static $defaultName = 'migrate';
+
     protected function configure()
     {
         $this
-            ->setName($this->commandName)
-            ->setDescription($this->commandDescription)
-            ->setHelp($this->commandHelp)
-
-        ;
+            ->setDescription('Execute database migrations')
+            ->setHelp('This command executes the database migrations');
     }
 
     protected function execute(InputInterface $input, OutputInterface $output): int
-    {   
-        if (!isset($_ENV['DB_HOST'])) {
-            $dotenv = Dotenv::createImmutable(dirname(__DIR__));
-            $dotenv->load();
-        }   
-        // outputs multiple lines to the console (adding "\n" at the end of each line)
+    {
+        $dotenv = Dotenv::createImmutable(dirname(__DIR__));
+        $dotenv->load();
+
         $output->writeln([
             '',
-            '<info>Database Migrations</>',
-            '<info>===================</>',
+            '<info>Database Migrations</info>',
+            '<info>===================</info>',
         ]);
-        // the value returned by someMethod() can be an iterator (https://secure.php.net/iterator)
-        // that generates and returns the messages with the 'yield' PHP keyword
-        //$output->writeln($this->someMethod());
 
         $config = [
             'application' => [
@@ -57,12 +48,22 @@ class MigrateCommand extends Command
                 'password' => $_ENV['DB_PASSWORD'] ?? '',
             ],
         ];
+
         $app = new Application($config);
-        if (isset($app->db)) {
-            $app->db->migrate();
-        } else {
-            $output->writeln("can't execute migrations, there is no database connection");
+
+        try {
+            if ($app->db !== null) {
+                $app->db->migrate();
+                $output->writeln('<info>Migrations completed successfully.</info>');
+            } else {
+                $output->writeln("<error>Can't execute migrations, no database connection.</error>");
+                return Command::FAILURE;
+            }
+        } catch (\Throwable $e) {
+            $output->writeln('<error>' . $e->getMessage() . '</error>');
+            return Command::FAILURE;
         }
+
         return Command::SUCCESS;
     }
 }
