@@ -29,10 +29,12 @@ class MigrateCommand extends Command
         ;
     }
 
-    protected function execute(InputInterface $input, OutputInterface $output)
-    {
-        $dotenv = Dotenv::createImmutable(dirname(__DIR__));
-        $dotenv->load();
+    protected function execute(InputInterface $input, OutputInterface $output): int
+    {   
+        if (!isset($_ENV['DB_HOST'])) {
+            $dotenv = Dotenv::createImmutable(dirname(__DIR__));
+            $dotenv->load();
+        }   
         // outputs multiple lines to the console (adding "\n" at the end of each line)
         $output->writeln([
             '',
