@@ -1,54 +1,104 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <title>sMVC</title>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="/css/bootstrap.min.css">
-        <!-- Custom styles for this template -->
-        <link href="/css/main.css" rel="stylesheet">
-    </head>
-    <body>
-        <!-- Header -->
-        <!--title block -->
-        <div class="row">
-            <div class="col-2"> 
-                <img class="img-fluid mt-2 mb-2" src="/img/logo.png" alt="ucll logo"> 
+<head>
+    <title>sMVC</title>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap 5 -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+
+    <!-- Custom styles -->
+    <link rel="stylesheet" href="/css/main.css">
+</head>
+
+<body>
+
+    <!-- Header -->
+    <header class="container">
+        <div class="row align-items-center py-2">
+
+            <!-- Logo -->
+            <div class="col-3 col-md-2">
+                <img
+                    class="img-fluid"
+                    src="/img/logo.png"
+                    alt="UCLL logo">
             </div>
+
+            <!-- Titles -->
             <div class="col">
-                <h2 class="text-danger" style="font-size:1.5vw"><?php echo $title ?></h2>
-                <h1 class="text-primary" style="font-size:2vw"><?php echo $bigTitle ?></h1>
-                <h3 class="text-secondary" style="font-size:1vw"><?php echo $subTitle ?></h3>
+                <h2 class="text-danger fs-5 mb-1">
+                    <?php echo $title ?>
+                </h2>
+
+                <h1 class="text-primary fs-2 mb-1">
+                    <?php echo $bigTitle ?>
+                </h1>
+
+                <h3 class="text-secondary fs-6 mb-0">
+                    <?php echo $subTitle ?>
+                </h3>
             </div>
 
         </div>
-        <!-- end title block -->
-        <!-- nav bar -->
-        <nav class="navbar navbar-expand-md navbar-dark bg-dark">
+    </header>
+    <!-- End Header -->
 
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark">
+        <div class="container">
+
+            <button
+                class="navbar-toggler"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#navbarsExampleDefault"
+                aria-controls="navbarsExampleDefault"
+                aria-expanded="false"
+                aria-label="Toggle navigation">
+
                 <span class="navbar-toggler-icon"></span>
             </button>
 
-            <div class="collapse navbar-collapse" id="navbarsExampleDefault">
-                <ul class="navbar-nav mr-auto">
+            <div
+                class="collapse navbar-collapse"
+                id="navbarsExampleDefault">
+
+                <ul class="navbar-nav me-auto mb-2 mb-md-0">
                     <?php echo $bootstrapNavigation ?>
                 </ul>
-                <form class="form-inline my-2 my-lg-0">
-                   <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
-                   <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
+
+                <form class="d-flex" role="search">
+                    <input
+                        class="form-control me-2"
+                        type="search"
+                        placeholder="Search"
+                        aria-label="Search">
+
+                    <button
+                        class="btn btn-secondary"
+                        type="submit">
+                        Search
+                    </button>
                 </form>
             </div>
-        </nav>
-        <!-- end nav bar -->
-        <main role="main" class="container">
+        </div>
+    </nav>
+    <!-- End Navigation -->
 
-            <div class="content">
-                <p><?php echo $content ?></p>
-            </div>
+
+    <!-- Main content -->
+    <main class="container py-4">
+
+        <div class="content">
+            <?php echo $content ?>
+        </div>
 
         </main><!-- /.container -->
         <script src="/js/jquery.min.js"></script>
         <script src="/js/bootstrap.min.js"></script>
-    </body>
+</body>
 </html>
