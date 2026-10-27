@@ -9,45 +9,101 @@
         <link href="/css/main.css" rel="stylesheet">
     </head>
     <body>
-        <!-- Header -->
-        <!--title block -->
-        <div class="row">
-            <div class="col-2"> 
-                <img class="img-fluid mt-2 mb-2" src="/img/logo.png" alt="ucll logo"> 
-            </div>
-            <div class="col">
-                <h2 class="text-danger" style="font-size:1.5vw"><?php echo $title ?></h2>
-                <h1 class="text-primary" style="font-size:2vw"><?php echo $bigTitle ?></h1>
-                <h3 class="text-secondary" style="font-size:1vw"><?php echo $subTitle ?></h3>
-            </div>
+		<!-- Header -->
+		<header class="container-fluid px-3">
+			<div class="row align-items-center py-2 g-0">
 
-        </div>
-        <!-- end title block -->
-        <!-- nav bar -->
-        <nav class="navbar navbar-expand-md navbar-dark bg-dark">
+				<!-- Logo -->
+				<div class="col-auto me-3">
+					<img
+						class="img-fluid"
+						src="/img/logo.png"
+						alt="UCLL logo">
+				</div>
 
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
+				<!-- Titles -->
+				<div class="col">
+					<h2 class="text-danger fs-5 mb-1">
+						<?php echo $title ?>
+					</h2>
 
-            <div class="collapse navbar-collapse" id="navbarsExampleDefault">
-                <ul class="navbar-nav mr-auto">
-                    <?php echo $bootstrapNavigation ?>
-                </ul>
-                <form class="form-inline my-2 my-lg-0">
-                   <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
-                   <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
-                </form>
-            </div>
-        </nav>
-        <!-- end nav bar -->
-        <main role="main" class="container">
+					<h1 class="text-primary fs-2 mb-1">
+						<?php echo $bigTitle ?>
+					</h1>
 
-            <div class="content">
-                <p><?php echo $content ?></p>
-            </div>
+					<h3 class="text-secondary fs-6 mb-0">
+						<?php echo $subTitle ?>
+					</h3>
+				</div>
 
-        </main><!-- /.container -->
+			</div>
+		</header>
+		<!-- End Header -->
+		<!-- Navigation -->
+		<nav class="navbar navbar-expand-md navbar-dark bg-dark">
+			<div class="container-fluid">
+
+				<button
+					class="navbar-toggler"
+					type="button"
+					data-bs-toggle="collapse"
+					data-bs-target="#navbarsExampleDefault"
+					aria-controls="navbarsExampleDefault"
+					aria-expanded="false"
+					aria-label="Toggle navigation">
+
+					<span class="navbar-toggler-icon"></span>
+				</button>
+
+				<div
+					class="collapse navbar-collapse"
+					id="navbarsExampleDefault">
+
+					<ul class="navbar-nav me-auto mb-2 mb-md-0">
+						<?php echo $bootstrapNavigation ?>
+					</ul>
+
+					<form class="d-flex" role="search">
+						<input
+							class="form-control me-2"
+							type="search"
+							placeholder="Search"
+							aria-label="Search">
+
+						<button
+							class="btn btn-secondary"
+							type="submit">
+							Search
+						</button>
+					</form>
+				</div>
+			</div>
+		</nav>
+		<!-- End Navigation -->
+		<!-- Message -->
+		<?php if (!empty($message)) : ?>
+			<?php foreach ($message as $type => $text) : ?>
+				<div class="alert alert-<?php echo $type; ?> alert-dismissible fade show" role="alert">
+				<?php echo htmlspecialchars($text); ?>
+					<button
+						type="button"
+						class="btn-close"
+						data-bs-dismiss="alert"
+						aria-label="Close">
+					</button>
+				</div>
+			<?php endforeach; ?>
+		<?php endif; ?>
+		<!-- End Message -->
+        <!-- Main content -->
+		<main class="container py-4">
+
+			<div class="content">
+				<?php echo $content ?>
+			</div>
+
+        </main>
+		<!-- End Main content -->
         <script src="/js/jquery.min.js"></script>
         <script src="/js/bootstrap.min.js"></script>
     </body>
